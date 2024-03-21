@@ -19,5 +19,17 @@
             $result = $db->exec($query);
             return $result;
         }
+        function updateLoai($id, $tenloai) {
+            $db = new connect();
+            $query = "update loai set tenloai = '$tenloai' where idloai=$id";
+            $result = $db->exec($query);
+            return $result;
+        }
+        function getLoaiID($id) {
+            $db=new connect();
+            $select="select * from loai where trangthai=0 and idloai = $id";
+            $result=$db->getInstance($select);
+            return $result;
+        }
     }
 ?>

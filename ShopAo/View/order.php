@@ -53,7 +53,6 @@
         <tr>
           <td >Số điện thoại: <input type="text" disabled name="sdt" value="<?php echo $sdt; ?>"> </td>
         </tr>
-        ?>
       </table>
       <!-- Thông tin sản phầm -->
       <table class="table table-bordered">

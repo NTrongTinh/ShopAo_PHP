@@ -29,15 +29,9 @@
                             </li>
                             <!-- Thống kê -->
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                <a class="nav-link" href="index.php?action=thongke" >
                                     Thống Kê
                                 </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="index.php?action=thongke">Sản Phẩm bán được nhiều Nhất</a>
-                                    <a class="dropdown-item" href="#">Sản Phẩm chưa được giao</a>
-                                    <a class="dropdown-item" href="#">Sản phẩm bán ít nhất</a>
-                                    <a class="dropdown-item" href="">Thống kê</a>
-                                </div>
                             </li>
                             <!-- Báo cáo -->
                             <li class="nav-item dropdown">
@@ -57,6 +51,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="../ShopAo">Trang người dùng</a>
                             </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="index.php?action=admin">Admin</a>
+                            </li> -->
                         </ul>
                     </div>
                 </nav>

@@ -40,7 +40,7 @@
               <td style="vertical-align: middle; text-align:center;">
                 <?php echo number_format($item['soluongmua']*$item['dongia'])?><sup><u>đ</u></sup>
               </td>
-              <td style="vertical-align: middle; text-align:center;"><a href="index.php?action=giohang&act=giohang_xoa&id=<?php echo $key?>"><button type="button" class="btn btn-danger" >Xóa</button></a>
+              <td style="vertical-align: middle; text-align:center;"><a href="index.php?action=giohang&act=giohang_xoa&id=<?php echo $item['mamh']?>"><button type="button" class="btn btn-danger" >Xóa</button></a>
 
               </td>
             </tr>

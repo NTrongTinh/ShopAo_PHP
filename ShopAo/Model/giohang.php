@@ -88,9 +88,9 @@ class giohang
         $result = $db->exec($query);
         return $result;
     }
-    function delGiohang($makh) {
+    function delGiohang($makh,$mamh) {
         $db = new connect();
-        $query = "DELETE FROM giohang where makh=$makh";
+        $query = "DELETE FROM giohang where makh=$makh and mamh=$mamh";
         $db->exec($query);
     }
 }

@@ -63,5 +63,29 @@ switch ($act) {
                 }
             }
             break;
+        case 'update':
+            if (isset($_GET['id'])) {
+                $tenloai = $loai->getLoaiID($_GET['id']);
+                $_SESSION['tenloai'] = $tenloai['tenloai'];
+                $_SESSION['idloai'] = $tenloai['idloai'];
+                include_once "./View/addloaisanpham.php";
+            } else {
+                echo "<script>Lỗi</script>";
+            }
+            break;
+        case "update_action":
+            if (isset($_SESSION['idloai'])) {
+                $idloai = $_SESSION['idloai'];
+                $tenloai = $_POST['tenloai'];
+                $updateLoai = $loai->updateLoai($idloai, $tenloai);
+                if ($updateLoai) {
+                    echo "<script>alert('Update thành công')</script>";
+                    echo '<meta http-equiv=refresh content="0;url=./index.php?action=loai"/>';
+                } else {
+                    echo "<script>alert('Lỗi')</script>";
+                    echo '<meta http-equiv=refresh content="0;url=./index.php?action=loai"/>';
+                }
+            }
+            break;
 }
 ?>

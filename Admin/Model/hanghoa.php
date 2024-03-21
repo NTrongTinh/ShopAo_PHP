@@ -42,10 +42,18 @@
             return $result;
         }
         // phương thức thống kê
-        function getThongKe()
+        function getThongKe($nam=0)
         {
             $db=new connect();
-            $select="SELECT b.tenmh,sum(a.soluongmua)as soluong FROM cthoadon a,hanghoa b WHERE a.mahh=b.mamh GROUP by b.tenmh";
+            if ($nam==0) {
+                $select="SELECT b.tenmh,sum(a.soluongmua)as soluong FROM cthoadon a,hanghoa b WHERE a.mahh=b.mamh GROUP by b.tenmh";
+            }
+            else {
+                $select="SELECT b.tenmh,sum(a.soluongmua)as soluong, YEAR(c.ngaydat) as nam 
+                FROM cthoadon a,hanghoa b, hoadon c 
+                WHERE a.mahh=b.mamh and a.masohd = c.masohd and YEAR(c.ngaydat) = '$nam' 
+                GROUP by b.tenmh";
+            }
             $result=$db->getList($select);
             return $result;
         }

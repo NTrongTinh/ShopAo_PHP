@@ -6,7 +6,7 @@
      google.load('visualization', '1.0', {'packages':['corechart']});
      google.setOnLoadCallback(drawVisualization);
      function drawVisualization() {
-		 				//thống kê số lượng bán hàng theo mặt hàng vẽ bieu do tron
+             //thống kê số lượng bán hàng theo mặt hàng vẽ bieu do tron
             var rows=new Array();
             var tenhh=new Array();
             var soluongban=new Array();
@@ -16,15 +16,19 @@
             var data=new google.visualization.DataTable();
             // lấy dữ liệu từ database về
             <?php
-              $hh=new hanghoa();
-              $result=$hh->getThongKe();
-              while($set=$result->fetch()){
-                $tenhh=$set['tenmh'];//Dép Quai Chữ V Đan Chéo Vân Cá Sấu
-                $slb=$set['soluong'];//25
-                // đem biến này đưa vào mảng tenhh và soluongban
-                echo "tenhh.push('".$tenhh."');";
-                echo "soluongban.push('".$slb."');";
-              }
+            $hh = new hanghoa();
+            if (isset($_SESSION['nam'])) {
+              $result = $hh->getThongKe($_SESSION['nam']);
+            } else {
+              $result = $hh->getThongKe();
+            }
+            while ($set = $result->fetch()) {
+              $tenhh = $set['tenmh'];//Dép Quai Chữ V Đan Chéo Vân Cá Sấu
+              $slb = $set['soluong'];//25
+              // đem biến này đưa vào mảng tenhh và soluongban
+              echo "tenhh.push('" . $tenhh . "');";
+              echo "soluongban.push('" . $slb . "');";
+            }
             ?>
             //+ tạo dòng
             for(var i=0;i<tenhh.length;i++)
@@ -49,23 +53,43 @@
             var chart=new google.visualization.ColumnChart(document.getElementById('chart_div'));
             chart.draw(data,options);
                    
-	 }
+   }
                    
     </script>
-        <div class="thongke mt-5 text-center">
-        <div style=" width:100%"   id="chart_div">dfsf
-      </div>
-      <select name="nam" id="">
+    <div class="row mt-5">
+      <div class="col-md-6">
         <?php
-          $hd = new hoadon();
-          $years = $hd->getNam();
-          while ($set = $years->fetch()) :
+          if (isset($_SESSION['nam'])&&$_SESSION['nam']!=0) {
+            echo "<h1 class='text-center'>Thống kê theo năm ". $_SESSION['nam']."</h1>";
+          } else {
+            echo "<h1 class='text-center'>Thống kê toàn bộ</h1>";
+          }
         ?>
-        <option value="<?php echo $set['nam'] ?>"><?php echo $set['nam'] ?></option>
-        <?php endwhile;?>
-      </select>
-        <!-- <div style=" width:50%;  float: right"   id="chart_div1">dsfd</div>     -->
+        <div style=" width:100%" id="chart_div">dfsf
+        </div>
       </div>
+      <div class="col-md-6">
+        <div class="thongke mt-5 text-center">
+          <form action="index.php?action=thongke&act=thongke_action" method="post">
+            <h1>Thống kê theo năm</h1>
+            <select class="form-control w-50 d-inline" name="nam" id="">
+              <option value="0">--Toàn bộ--</option>
+              <?php
+              $hd = new hoadon();
+              $years = $hd->getNam();
+              while ($set = $years->fetch()):
+                ?>
+                <option value="<?php echo $set['nam'] ?>" <?php if(isset($_SESSION['nam'])&&$set['nam']==$_SESSION['nam']) { echo "selected"; unset($_SESSION['nam']); }?>><?php echo $set['nam'] ?></option>
+              <?php endwhile; ?>
+            </select>
+            <input class="btn btn-primary" type="submit" value="Thống kê">
+          </form>
+        
+          <!-- <div style=" width:50%;  float: right"   id="chart_div1">dsfd</div>     -->
+        </div>
+      </div>
+    </div>
+      
   </meta>
  
  

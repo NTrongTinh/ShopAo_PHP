@@ -38,7 +38,9 @@ if (!isset ($_SESSION['makh'])) {
             if (isset ($_GET['id'])) {
                 # code...
                 $id = $_GET['id'];
-                unset($_SESSION['cart'][$id]);
+                // unset($_SESSION['cart'][$id]);
+                // $giohang = new giohang();
+                $del = $gh->delGiohang($_SESSION['makh'],$id);
             }
             echo '<meta http-equiv="refresh" content="0;url=./index.php?action=giohang"/>';
             break;
@@ -62,6 +64,7 @@ if (!isset ($_SESSION['makh'])) {
             } else {
                 echo '<script>alert("Vui lòng nhập số lượng")</script><meta http-equiv="refresh" content="0;url=./index.php?action=giohang"/>';
             }
+            echo '<meta http-equiv="refresh" content="0;url=./index.php?action=giohang"/>';
             break;
     }
 }
