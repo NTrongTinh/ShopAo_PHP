@@ -51,9 +51,19 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="../ShopAo">Trang người dùng</a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="index.php?action=admin">Admin</a>
-                            </li> -->
+                            <?php
+                                if (isset($_SESSION['admin'])) {
+                            ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?action=dangnhap&act=dangxuat">Đăng xuất</a>
+                            </li>
+                            <?php
+                                } else {
+                            ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php?action=dangnhap">Đăng nhập</a>
+                            </li>
+                            <?php };?>
                         </ul>
                     </div>
                 </nav>

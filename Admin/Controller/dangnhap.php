@@ -33,6 +33,10 @@ switch ($act) {
         }
        }
         break;
+    case "dangxuat":
+        unset($_SESSION['admin']);
+        echo '<meta http-equiv="refresh" content="0;url=./index.php?action=dangnhap"/>';
+        break;
 }
     
 ?>
